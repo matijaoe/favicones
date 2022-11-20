@@ -15,9 +15,7 @@ const linkTagHtml = $computed(() => [`<link rel="icon" href="${origin}/api/`, '"
 const getRelativeIconUrl = (icon: string) => `/api/${icon}`
 const getIconUrl = (icon: string) => `${origin}${getRelativeIconUrl(icon)}`
 const getFaviconLinkTag = (icon: string) => `<link rel="icon" href="${getIconUrl(icon)}">`
-const getIconWithColor = (icon: string, color: string) => {
-  return `${icon}?color=${color.replace('#', '')}`
-}
+const getIconWithColor = (icon: string, color: string) => `${icon}?color=${color.replace('#', '')}`
 
 useHead({
   title: 'Favicônes',
@@ -56,10 +54,8 @@ const handleActionApplied = (ref: Ref<Record<string, boolean>>, icon: string) =>
   setTimeout(() => ref.value = {}, 1500)
 }
 
-// TODO: sometimes apply favicon doesn't on next after applying previous
 const applyFavicon = (icon: string, color?: string) => {
   favicon = color ? getIconWithColor(icon, color) : icon
-  console.log('favicon :>> ', favicon)
   handleActionApplied(faviconApplied, icon)
 }
 
@@ -98,6 +94,7 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
     >
       <div flex h-screen>
         <div
+          container
           flex-1 w-full mx-auto px-8
           overflow-y-auto
         >

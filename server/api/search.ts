@@ -7,11 +7,5 @@ const fetchResults = async (query: string) => {
 export default defineEventHandler(async (event) => {
   const { query } = getQuery(event) as { query: string }
 
-  try {
-    const results = await fetchResults(query)
-    return results
-  }
-  catch (err) {
-    console.log(err)
-  }
+  return fetchResults(query)
 })
