@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 import '@unocss/reset/tailwind.css'
+import { definePageMeta } from 'nuxt/dist/pages/runtime'
 
 const getIconUrl = (icon: string) => `/api/${icon}`
 
 let favicon = $ref('ph:dice-one-fill?color=fb923c')
 
 useHead({
+  title: 'Favicônes',
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: computed(() => getIconUrl(favicon)) },
+    { rel: 'icon', href: computed(() => getIconUrl(favicon)) },
   ],
 })
 
-let origin = $ref('http://localhost:3000')
+let origin = $ref('https://favicones.vercel.app')
 onMounted(() => {
   if (process.client)
     origin = window.location.origin
@@ -40,7 +42,7 @@ const linkTagHtml = $computed(() => [`<link rel="icon" href="${origin}/api/`, '"
 <template>
   <Body class="bg-orange-1 text-orange-6">
     <div
-      container max-w-5xl mx-auto min-h-screen
+      container max-w-7xl mx-auto min-h-screen
       flex flex-col justify-between items-stretch
     >
       <div flex-1 w-full mx-auto p-8 mt="5vh">
