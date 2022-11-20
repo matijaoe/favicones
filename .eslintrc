@@ -1,0 +1,11 @@
+{
+  "extends": "@antfu",
+  "rules": {
+    "@typescript-eslint/consistent-type-definitions": [
+      "warn",
+      "type"
+    ],
+    "no-console": "warn",
+    "no-tabs": "off",
+  }
+}
