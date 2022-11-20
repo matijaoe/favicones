@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <footer py-18 px-8 text-orange-5 w-full text-sm>
+  <footer py-14 text-orange-5 w-full text-sm>
     <div flex justify-between items-center>
       <p>
         Powered by

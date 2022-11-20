@@ -7,6 +7,8 @@ import {
 export default {
   modules: [
     '@unocss/nuxt',
+    '@vueuse/nuxt',
+    'nuxt-icon',
   ],
   experimental: {
     reactivityTransform: true,
