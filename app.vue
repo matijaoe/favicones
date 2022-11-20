@@ -72,8 +72,7 @@ const linkTagHtml = $computed(() => [`<link rel="icon" href="${origin}/api/`, '"
                   ring-2 ring-orange-3
                   rounded-sm
                 >
-                  <span opacity-40 py-1>{{ origin }}</span>
-                  <span>/api/</span>
+                  <span opacity-40 py-1>{{ origin }}/api/</span>
                   <span bg-blue-1 text-blue-6 py-1>[icon-pack]</span>:
                   <span bg-green-1 text-green-6 py-1>[icon-name]</span>
                   ?color=<span bg-violet-1 text-violet-6 py-1>[color]</span>
