@@ -4,11 +4,10 @@ import '@unocss/reset/tailwind.css'
 const getIconUrl = (icon: string) => `/api/${icon}`
 
 let favicon = $ref('ph:dice-one-fill?color=fb923c')
-const faviconHref = $computed(() => getIconUrl(favicon))
 
 useHead({
   link: [
-    { rel: 'icon', type: 'image/svg+xml', href: faviconHref },
+    { rel: 'icon', type: 'image/svg+xml', href: computed(() => getIconUrl(favicon)) },
   ],
 })
 
