@@ -56,8 +56,10 @@ const handleActionApplied = (ref: Ref<Record<string, boolean>>, icon: string) =>
   setTimeout(() => ref.value = {}, 1500)
 }
 
+// TODO: sometimes apply favicon doesn't on next after applying previous
 const applyFavicon = (icon: string, color?: string) => {
   favicon = color ? getIconWithColor(icon, color) : icon
+  console.log('favicon :>> ', favicon)
   handleActionApplied(faviconApplied, icon)
 }
 
@@ -80,10 +82,12 @@ const applyFaviconAndCopyLinkTag = (icon: string) => {
   copyLinkTag(icon)
 }
 
-const onSearch = useDebounceFn(async () => {
+const onIconSearch = async () => {
   const { data } = await useFetch('/api/search', { params: { query } })
   results.value = data.value?.icons ?? []
-}, 400)
+}
+
+const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
 </script>
 
 <template>
@@ -92,9 +96,9 @@ const onSearch = useDebounceFn(async () => {
       h-screen overflow-hidden
       flex flex-col justify-between
     >
-      <div grid grid-cols-5 h-screen>
+      <div flex h-screen>
         <div
-          col-span-3 flex-1 w-full mx-auto px-8
+          flex-1 w-full mx-auto px-8
           overflow-y-auto
         >
           <div flex justify-center items-center gap-5 py-8>
@@ -184,8 +188,8 @@ const onSearch = useDebounceFn(async () => {
           <Footer />
         </div>
 
-        <div col-span-2 border="l-1 y-1 orange-3">
-          <div flex>
+        <div w="120" border="l-1 y-1 orange-3">
+          <form flex @submit.prevent="onIconSearch">
             <input
               v-model="query"
               w-full p-4 bg="orange-2"
@@ -193,7 +197,7 @@ const onSearch = useDebounceFn(async () => {
               placeholder="Search icons"
               aria-label="Search for icons"
               class="placeholder:text-orange-7 focus:outline-none"
-              @input="onSearch"
+              @input="onDebouncedIconSearch"
             >
             <input
               v-model="color"
@@ -202,7 +206,7 @@ const onSearch = useDebounceFn(async () => {
               placeholder="Choose color"
               aria-label="Choose color"
             >
-          </div>
+          </form>
           <div h="[calc(100vh-56px)]" overflow-y-auto border="t-1 orange-3">
             <div flex flex-col divide-y-1 divide-orange-3>
               <article v-for="icon in results" :key="icon" p-4 text-orange-8>
@@ -215,7 +219,7 @@ const onSearch = useDebounceFn(async () => {
                   <div flex-1>
                     <!-- Icon name -->
                     <div flex items-center gap-2>
-                      <p font-medium line-clamp-1>
+                      <p font-medium line-clamp-1 :title="icon">
                         {{ icon }}
                       </p>
                       <button
