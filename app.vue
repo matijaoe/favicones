@@ -88,14 +88,13 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
 </script>
 
 <template>
-  <Body class="bg-orange-1 text-orange-6">
+  <Body class="bg-orange-50 text-orange-6">
     <div
       h-screen overflow-hidden
       flex flex-col justify-between
     >
       <div flex h-screen>
         <div
-          class="scrollbar scrollbar-rounded scrollbar-w-4px scrollbar-radius-2 scrollbar-track-radius-4 scrollbar-thumb-radius-4 scrollbar-red-5"
           container
           flex-1 w-full mx-auto px-8
           overflow-y-auto
@@ -114,9 +113,9 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
               <main w-full flex flex-col gap-4>
                 <div
                   space-y-4 px-2 font-mono
-                  bg-orange-2 text-orange-6
+                  bg-orange-1 text-orange-6
                   cursor-pointer
-                  ring-2 ring-orange-3
+                  border-2 border-orange-3
                   rounded-sm
                 >
                   <!-- Example url -->
@@ -142,8 +141,9 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
                       min-h="40px" cursor-pointer
                       flex-1 flex justify-start items-center
                       py-1 px-2 font-mono rounded-sm
-                      bg-orange-2 text-orange-6
-                      class="hover:(ring-2 ring-orange-3)"
+                      bg-orange-1 text-orange-6
+                      border-2 border-orange-3 border-dashed
+                      class="hover:(border-solid bg-orange-2/60)"
                       @click="applyFaviconAndCopyLinkTag(icon)"
                     >
                       <p v-if="linkTagCopied[icon] && faviconApplied[icon]" text-center w-full>
@@ -155,17 +155,19 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
                         <span opacity-50>{{ linkTagHtml[1] }}</span>
                       </div>
                     </button>
-                    <img
-                      w-10 aspect-square
-                      :src="getRelativeIconUrl(icon)"
-                      alt="icon preview"
-                    >
+                    <div>
+                      <img
+                        w-10 aspect-square
+                        :src="getRelativeIconUrl(icon)"
+                        alt="icon preview"
+                      >
+                    </div>
                   </div>
                 </div>
               </main>
 
               <div w-full text-center>
-                <div bg-orange-2 p-5 rounded-sm space-y-4>
+                <div bg-orange-1 p-5 rounded-sm space-y-4>
                   <p>
                     Supports over <span font-semibold>100,000</span> open source vector icons, across <span font-semibold>100+</span>  icon
                     sets.
@@ -188,7 +190,7 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
         </div>
 
         <div w="120" border="l-1 y-1 orange-3">
-          <form flex items-center pr-4 bg="orange-2" @submit.prevent="onIconSearch">
+          <form flex items-center pr-4 bg="orange-1" @submit.prevent="onIconSearch">
             <input
               v-model="query"
               bg-transparent
