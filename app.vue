@@ -54,6 +54,7 @@ const handleActionApplied = (ref: Ref<Record<string, boolean>>, icon: string) =>
   setTimeout(() => ref.value = {}, 1500)
 }
 
+// TODO: favicon doesn't awlays apply after setting previous (cache issue?)
 const applyFavicon = (icon: string, color?: string) => {
   favicon = color ? getIconWithColor(icon, color) : icon
   handleActionApplied(faviconApplied, icon)
@@ -94,6 +95,7 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
     >
       <div flex h-screen>
         <div
+          class="scrollbar scrollbar-rounded scrollbar-w-4px scrollbar-radius-2 scrollbar-track-radius-4 scrollbar-thumb-radius-4 scrollbar-red-5"
           container
           flex-1 w-full mx-auto px-8
           overflow-y-auto
@@ -186,23 +188,20 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
         </div>
 
         <div w="120" border="l-1 y-1 orange-3">
-          <form flex @submit.prevent="onIconSearch">
+          <form flex items-center pr-4 bg="orange-2" @submit.prevent="onIconSearch">
             <input
               v-model="query"
-              w-full p-4 bg="orange-2"
+              bg-transparent
+              w-full p-4
               type="search"
               placeholder="Search icons"
               aria-label="Search for icons"
               class="placeholder:text-orange-7 focus:outline-none"
               @input="onDebouncedIconSearch"
             >
-            <input
+            <ColorPicker
               v-model="color"
-              h="56px" w="100px" bg="orange-2"
-              type="color"
-              placeholder="Choose color"
-              aria-label="Choose color"
-            >
+            />
           </form>
           <div h="[calc(100vh-56px)]" overflow-y-auto border="t-1 orange-3">
             <div flex flex-col divide-y-1 divide-orange-3>
