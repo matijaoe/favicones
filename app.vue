@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import '@unocss/reset/tailwind.css'
 import type { Ref } from 'vue'
 
 let origin = $ref('https://favicones.vercel.app')
