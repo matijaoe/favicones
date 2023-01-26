@@ -7,19 +7,17 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "dependencies": {
+    "@vueuse/nuxt": "^9.6.0"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
-    "@types/jsdom": "^20.0.1",
     "@unocss/nuxt": "^0.46.5",
     "@unocss/reset": "^0.46.5",
     "eslint": "^8.28.0",
     "nuxt": "3.0.0",
     "nuxt-icon": "^0.1.7",
     "typescript": "^4.9.3",
-    "unocss": "^0.47.5",
-    "unocss-preset-scrollbar": "^0.2.1"
-  },
-  "dependencies": {
-    "@vueuse/nuxt": "^9.6.0"
+    "unocss": "^0.47.5"
   }
 }

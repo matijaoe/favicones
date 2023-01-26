@@ -1,6 +1,6 @@
 # Favicônes
 
-<img width="1512" alt="CleanShot 2023-01-09 at 01 25 10@2x" src="https://user-images.githubusercontent.com/46557266/211226289-5e5613b6-d778-40e0-a93a-9862bf5048ed.png">
+<img width="1512" src="https://user-images.githubusercontent.com/46557266/211226289-5e5613b6-d778-40e0-a93a-9862bf5048ed.png">
 
 ## Setup
 
