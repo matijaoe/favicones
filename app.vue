@@ -1,25 +1,25 @@
 <script lang="ts" setup>
 import type { Ref } from 'vue'
 
-let origin = $ref('https://favicones.vercel.app')
+const origin = ref('https://favicones.vercel.app')
 onMounted(() => {
   if (process.client)
-    origin = window.location.origin
+    origin.value = window.location.origin
 })
 
-let favicon = $ref('icon-park-twotone:healthy-recognition?color=EA580B')
+const favicon = ref('icon-park-twotone:healthy-recognition?color=EA580B')
 
-const linkTagHtml = $computed(() => [`<link rel="icon" href="${origin}/api/`, '" />'])
+const linkTagHtml = computed(() => [`<link rel="icon" href="${origin.value}/api/`, '" />'])
 
 const getRelativeIconUrl = (icon: string) => `/api/${icon}`
-const getIconUrl = (icon: string) => `${origin}${getRelativeIconUrl(icon)}`
+const getIconUrl = (icon: string) => `${origin.value}${getRelativeIconUrl(icon)}`
 const getFaviconLinkTag = (icon: string) => `<link rel="icon" href="${getIconUrl(icon)}">`
 const getIconWithColor = (icon: string, color: string) => `${icon}?color=${color.replace('#', '')}`
 
 useHead({
   title: 'Favicônes',
   link: [
-    { rel: 'icon', href: computed(() => getRelativeIconUrl(favicon)) },
+    { rel: 'icon', href: computed(() => getRelativeIconUrl(favicon.value)) },
   ],
 })
 
@@ -35,8 +35,8 @@ const iconExamples = [
   'logos:typescript-icon',
 ]
 
-const query = $ref('')
-const color = $ref('#9A3413')
+const query = ref('')
+const color = ref('#9A3413')
 const results = ref<string[]>([])
 
 const iconNameCopied = ref<Record<string, boolean>>({})
@@ -53,9 +53,9 @@ const handleActionApplied = (ref: Ref<Record<string, boolean>>, icon: string) =>
   setTimeout(() => ref.value = {}, 1500)
 }
 
-// TODO: favicon doesn't awlays apply after setting previous (cache issue?)
+// TODO: favicon doesn't always apply after setting previous (cache issue?)
 const applyFavicon = (icon: string, color?: string) => {
-  favicon = color ? getIconWithColor(icon, color) : icon
+  favicon.value = color ? getIconWithColor(icon, color) : icon
   handleActionApplied(faviconApplied, icon)
 }
 
@@ -79,7 +79,7 @@ const applyFaviconAndCopyLinkTag = (icon: string) => {
 }
 
 const onIconSearch = async () => {
-  const { data } = await useFetch('/api/search', { params: { query } })
+  const { data } = await useFetch('/api/search', { params: { query: query.value } })
   results.value = data.value?.icons ?? []
 }
 
@@ -188,7 +188,7 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
           <Footer />
         </div>
 
-        <div w="120" border="l-1 y-1 orange-3">
+        <div w="100" border="l-1 y-1 orange-3">
           <form flex items-center pr-4 bg="orange-1" @submit.prevent="onIconSearch">
             <input
               v-model="query"
