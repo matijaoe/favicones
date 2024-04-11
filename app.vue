@@ -168,11 +168,11 @@ const onDebouncedIconSearch = useDebounceFn(onIconSearch, 400)
               <div w-full text-center>
                 <div bg-orange-1 p-5 rounded-sm space-y-4>
                   <p>
-                    Supports over <span font-semibold>100,000</span> open source vector icons, across <span font-semibold>100+</span>  icon
+                    Over <span font-semibold>100,000</span> open source vector icons, across <span font-semibold>100+</span> icon
                     sets.
                   </p>
                   <p>
-                    Search them all on
+                    Find them all on
                     <NuxtLink
                       to="https://icones.js.org/collection/all"
                       underline
